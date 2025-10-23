@@ -26,6 +26,7 @@ export function CodePreview({ html = '', css = '', js = '', height = '300px' }: 
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_self">
     <style>
       body { margin: 16px; font-family: system-ui, -apple-system, sans-serif; }
       ${css}
@@ -35,6 +36,19 @@ export function CodePreview({ html = '', css = '', js = '', height = '300px' }: 
     ${html}
     <script>
       try {
+        // Prevent hash links from affecting parent page
+        document.addEventListener('click', function(e) {
+          const target = e.target.closest('a');
+          if (target && target.getAttribute('href')?.startsWith('#')) {
+            e.preventDefault();
+            const id = target.getAttribute('href').substring(1);
+            const element = document.getElementById(id);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+        
         ${js}
       } catch (error) {
         console.error('Error in preview:', error);
