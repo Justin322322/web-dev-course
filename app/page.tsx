@@ -1,4 +1,4 @@
-import { Code, Palette, Zap } from "lucide-react";
+import { FaHtml5, FaCss3Alt, FaJs, FaCode, FaVideo, FaBolt, FaChartLine } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Home() {
@@ -35,7 +35,7 @@ export default function Home() {
         <section className="grid md:grid-cols-3 gap-6">
           <Link href="/html" className="p-6 bg-card border border-border rounded-lg shadow-md hover:shadow-lg hover:border-primary transition-all group">
             <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-              <Code className="w-6 h-6 text-primary" />
+              <FaHtml5 className="w-6 h-6 text-primary" />
             </div>
             <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">HTML Fundamentals</h3>
             <p className="text-muted-foreground mb-4">
@@ -50,7 +50,7 @@ export default function Home() {
 
           <Link href="/css" className="p-6 bg-card border border-border rounded-lg shadow-md hover:shadow-lg hover:border-secondary transition-all group">
             <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
-              <Palette className="w-6 h-6 text-secondary" />
+              <FaCss3Alt className="w-6 h-6 text-secondary" />
             </div>
             <h3 className="text-xl font-bold mb-2 group-hover:text-secondary transition-colors">CSS Fundamentals</h3>
             <p className="text-muted-foreground mb-4">
@@ -65,7 +65,7 @@ export default function Home() {
 
           <Link href="/javascript" className="p-6 bg-card border border-border rounded-lg shadow-md hover:shadow-lg hover:border-accent transition-all group">
             <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-              <Zap className="w-6 h-6 text-accent" />
+              <FaJs className="w-6 h-6 text-accent" />
             </div>
             <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">JavaScript Fundamentals</h3>
             <p className="text-muted-foreground mb-4">
@@ -88,7 +88,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex gap-4">
               <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                <Code className="w-5 h-5 text-primary" />
+                <FaCode className="w-5 h-5 text-primary" />
               </div>
               <div>
                 <h4 className="font-semibold mb-1">Interactive Code Examples</h4>
@@ -100,7 +100,7 @@ export default function Home() {
 
             <div className="flex gap-4">
               <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center shrink-0">
-                <Palette className="w-5 h-5 text-secondary" />
+                <FaVideo className="w-5 h-5 text-secondary" />
               </div>
               <div>
                 <h4 className="font-semibold mb-1">Curated Video Tutorials</h4>
@@ -112,7 +112,7 @@ export default function Home() {
 
             <div className="flex gap-4">
               <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
-                <Zap className="w-5 h-5 text-accent" />
+                <FaBolt className="w-5 h-5 text-accent" />
               </div>
               <div>
                 <h4 className="font-semibold mb-1">Fast Search</h4>
@@ -124,7 +124,7 @@ export default function Home() {
 
             <div className="flex gap-4">
               <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                <Code className="w-5 h-5 text-primary" />
+                <FaChartLine className="w-5 h-5 text-primary" />
               </div>
               <div>
                 <h4 className="font-semibold mb-1">Track Your Progress</h4>

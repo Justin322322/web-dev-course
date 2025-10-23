@@ -3,7 +3,8 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, ChevronRight, Code, Palette, Zap, Home, CheckCircle2, Circle, Bookmark } from "lucide-react";
+import { ChevronDown, ChevronRight, Home, CheckCircle2, Circle, Bookmark } from "lucide-react";
+import { FaHtml5, FaCss3Alt, FaJs } from "react-icons/fa";
 import { useProgress } from "@/lib/progress-context";
 import { ProgressTracker } from "@/components/progress-tracker";
 
@@ -29,7 +30,7 @@ const courseData: Section[] = [
   {
     id: "html",
     title: "HTML Fundamentals",
-    icon: <Code className="w-5 h-5" />,
+    icon: <FaHtml5 className="w-5 h-5" />,
     lessons: [
       { id: "html-intro", title: "Introduction to HTML", completed: false },
       { id: "html-elements", title: "Text Elements", completed: false },
@@ -44,7 +45,7 @@ const courseData: Section[] = [
   {
     id: "css",
     title: "CSS Fundamentals",
-    icon: <Palette className="w-5 h-5" />,
+    icon: <FaCss3Alt className="w-5 h-5" />,
     lessons: [
       { id: "css-intro", title: "Introduction to CSS", completed: false },
       { id: "css-selectors", title: "CSS Selectors", completed: false },
@@ -60,7 +61,7 @@ const courseData: Section[] = [
   {
     id: "javascript",
     title: "JavaScript Fundamentals",
-    icon: <Zap className="w-5 h-5" />,
+    icon: <FaJs className="w-5 h-5" />,
     lessons: [
       { id: "js-intro", title: "Introduction to JavaScript", completed: false },
       { id: "js-functions", title: "Functions", completed: false },

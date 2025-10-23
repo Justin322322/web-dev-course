@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Code, Palette, Zap } from 'lucide-react';
+import { FaHtml5, FaCss3Alt, FaJs } from 'react-icons/fa';
 
 interface PageProps {
   params: Promise<{
@@ -12,7 +12,7 @@ const categoryData = {
   html: {
     title: 'HTML Fundamentals',
     description: 'Learn the building blocks of web pages with HTML. Master elements, attributes, forms, and semantic markup.',
-    icon: Code,
+    icon: FaHtml5,
     color: 'text-orange-500',
     lessons: [
       { id: 'html-intro', title: 'Introduction to HTML', description: 'Get started with HTML basics and structure' },
@@ -25,7 +25,7 @@ const categoryData = {
   css: {
     title: 'CSS Fundamentals',
     description: 'Style your web pages with CSS. Learn selectors, layouts, and responsive design techniques.',
-    icon: Palette,
+    icon: FaCss3Alt,
     color: 'text-blue-500',
     lessons: [
       { id: 'css-intro', title: 'Introduction to CSS', description: 'Get started with CSS styling basics' },
@@ -38,7 +38,7 @@ const categoryData = {
   javascript: {
     title: 'JavaScript Fundamentals',
     description: 'Add interactivity to your websites with JavaScript. Learn programming concepts and DOM manipulation.',
-    icon: Zap,
+    icon: FaJs,
     color: 'text-yellow-500',
     lessons: [
       { id: 'js-intro', title: 'Introduction to JavaScript', description: 'Get started with JavaScript basics' },

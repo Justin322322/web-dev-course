@@ -253,11 +253,11 @@ Animations allow more complex sequences of changes.
         
         /* Slide In Animation */
         @keyframes slideIn {
-            from {
+            0% {
                 transform: translateX(-100%);
                 opacity: 0;
             }
-            to {
+            100% {
                 transform: translateX(0);
                 opacity: 1;
             }
@@ -272,22 +272,22 @@ Animations allow more complex sequences of changes.
             align-items: center;
             justify-content: center;
             border-radius: 5px;
-            animation: slideIn 1s ease-out;
+            animation: slideIn 2s ease-out infinite;
             margin: 20px 0;
         }
         
         /* Fade In Animation */
         @keyframes fadeIn {
-            from {
+            0%, 50% {
                 opacity: 0;
             }
-            to {
+            100% {
                 opacity: 1;
             }
         }
         
         .fade-text {
-            animation: fadeIn 2s ease-in;
+            animation: fadeIn 3s ease-in infinite;
             font-size: 24px;
             color: #34495e;
             margin: 20px 0;
@@ -295,11 +295,14 @@ Animations allow more complex sequences of changes.
         
         /* Progress Bar Animation */
         @keyframes progress {
-            from {
+            0% {
                 width: 0%;
             }
-            to {
+            50% {
                 width: 100%;
+            }
+            100% {
+                width: 0%;
             }
         }
         
@@ -315,7 +318,7 @@ Animations allow more complex sequences of changes.
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #3498db, #2ecc71);
-            animation: progress 3s ease-out forwards;
+            animation: progress 4s ease-in-out infinite;
         }
     </style>
 </head>
