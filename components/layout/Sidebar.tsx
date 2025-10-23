@@ -1,0 +1,193 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ChevronDown, ChevronRight, Code, Palette, Zap, Home, CheckCircle2, Circle, Bookmark } from "lucide-react";
+import { useProgress } from "@/lib/progress-context";
+import { ProgressTracker } from "@/components/progress-tracker";
+
+interface SidebarProps {
+  isOpen: boolean;
+  onClose?: () => void;
+}
+
+interface Section {
+  id: string;
+  title: string;
+  icon: React.ReactNode;
+  lessons: Lesson[];
+}
+
+interface Lesson {
+  id: string;
+  title: string;
+  completed?: boolean;
+}
+
+const courseData: Section[] = [
+  {
+    id: "html",
+    title: "HTML Fundamentals",
+    icon: <Code className="w-5 h-5" />,
+    lessons: [
+      { id: "html-intro", title: "Introduction to HTML", completed: false },
+      { id: "html-elements", title: "HTML Elements & Tags", completed: false },
+      { id: "html-attributes", title: "Attributes & Properties", completed: false },
+      { id: "html-forms", title: "Forms & Input", completed: false },
+      { id: "html-semantic", title: "Semantic HTML", completed: false },
+    ],
+  },
+  {
+    id: "css",
+    title: "CSS Fundamentals",
+    icon: <Palette className="w-5 h-5" />,
+    lessons: [
+      { id: "css-intro", title: "Introduction to CSS", completed: false },
+      { id: "css-selectors", title: "Selectors & Specificity", completed: false },
+      { id: "css-box-model", title: "Box Model", completed: false },
+      { id: "css-flexbox", title: "Flexbox Layout", completed: false },
+      { id: "css-grid", title: "Grid Layout", completed: false },
+    ],
+  },
+  {
+    id: "javascript",
+    title: "JavaScript Fundamentals",
+    icon: <Zap className="w-5 h-5" />,
+    lessons: [
+      { id: "js-intro", title: "Introduction to JavaScript", completed: false },
+      { id: "js-variables", title: "Variables & Data Types", completed: false },
+      { id: "js-functions", title: "Functions", completed: false },
+      { id: "js-dom", title: "DOM Manipulation", completed: false },
+      { id: "js-events", title: "Events & Event Handling", completed: false },
+    ],
+  },
+];
+
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const pathname = usePathname();
+  const [expandedSections, setExpandedSections] = useState<string[]>(["html"]);
+  const { isCompleted, isBookmarked } = useProgress();
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSections((prev) =>
+      prev.includes(sectionId)
+        ? prev.filter((id) => id !== sectionId)
+        : [...prev, sectionId]
+    );
+  };
+
+  const isActive = (path: string) => pathname === path;
+
+  return (
+    <>
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 lg:hidden"
+          onClick={onClose}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside
+        className={`fixed left-0 top-16 bottom-0 w-72 bg-sidebar border-r border-sidebar-border z-40 transition-transform duration-300 flex flex-col ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+          {/* Home Link */}
+          <Link
+            href="/"
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors group ${
+              isActive("/")
+                ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+            }`}
+          >
+            <Home className="w-5 h-5" />
+            <span className="font-medium">Home</span>
+          </Link>
+
+          <div className="h-px bg-sidebar-border my-4" />
+
+          {/* Course Sections */}
+          {courseData.map((section) => {
+            const isExpanded = expandedSections.includes(section.id);
+            const completedCount = section.lessons.filter((l) => isCompleted(l.id)).length;
+            const totalCount = section.lessons.length;
+
+            return (
+              <div key={section.id} className="space-y-1">
+                <button
+                  onClick={() => toggleSection(section.id)}
+                  className="w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="text-sidebar-primary group-hover:text-sidebar-accent-foreground">
+                      {section.icon}
+                    </div>
+                    <div className="text-left">
+                      <div className="font-medium text-sm">{section.title}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {completedCount}/{totalCount} completed
+                      </div>
+                    </div>
+                  </div>
+                  {isExpanded ? (
+                    <ChevronDown className="w-4 h-4" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4" />
+                  )}
+                </button>
+
+                {/* Lessons */}
+                {isExpanded && (
+                  <div className="ml-4 pl-4 border-l-2 border-sidebar-border space-y-1">
+                    {section.lessons.map((lesson) => {
+                      const lessonPath = `/${section.id}/${lesson.id}`;
+                      const isLessonActive = isActive(lessonPath);
+                      const completed = isCompleted(lesson.id);
+                      const bookmarked = isBookmarked(lesson.id);
+                      
+                      return (
+                        <Link
+                          key={lesson.id}
+                          href={lessonPath}
+                          className={`block px-4 py-2 rounded-lg text-sm transition-colors ${
+                            isLessonActive
+                              ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
+                              : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                          }`}
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="flex items-center gap-2 flex-1">
+                              {completed ? (
+                                <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
+                              ) : (
+                                <Circle className="w-4 h-4 text-muted-foreground shrink-0" />
+                              )}
+                              <span className="truncate">{lesson.title}</span>
+                            </div>
+                            {bookmarked && (
+                              <Bookmark className="w-3 h-3 text-primary fill-primary shrink-0" />
+                            )}
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </nav>
+
+        {/* Progress Footer - at bottom of nav */}
+        <div className="p-4 bg-sidebar border-t border-sidebar-border">
+          <ProgressTracker />
+        </div>
+      </aside>
+    </>
+  );
+}

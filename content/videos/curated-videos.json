@@ -1,0 +1,158 @@
+{
+  "html": [
+    {
+      "id": "html-001",
+      "youtubeId": "pQN-pnXPaVg",
+      "title": "HTML Full Course - Build a Website Tutorial",
+      "channel": "freeCodeCamp.org",
+      "duration": 120,
+      "description": "Complete HTML tutorial for beginners covering all essential HTML elements and concepts",
+      "difficulty": "beginner",
+      "topics": ["html-basics", "elements", "forms", "semantic-html"]
+    },
+    {
+      "id": "html-002",
+      "youtubeId": "UB1O30fR-EE",
+      "title": "HTML Crash Course For Absolute Beginners",
+      "channel": "Traversy Media",
+      "duration": 60,
+      "description": "Quick crash course covering HTML fundamentals and basic webpage structure",
+      "difficulty": "beginner",
+      "topics": ["html-basics", "elements", "structure"]
+    },
+    {
+      "id": "html-003",
+      "youtubeId": "kUMe1FH4CHE",
+      "title": "Learn HTML - Full Tutorial for Beginners",
+      "channel": "freeCodeCamp.org",
+      "duration": 120,
+      "description": "Comprehensive HTML tutorial with hands-on examples and projects",
+      "difficulty": "beginner",
+      "topics": ["html-basics", "forms", "tables", "multimedia"]
+    },
+    {
+      "id": "html-004",
+      "youtubeId": "HD13eq_Pmp8",
+      "title": "HTML Tutorial - How to Make a Website",
+      "channel": "freeCodeCamp.org",
+      "duration": 90,
+      "description": "Learn HTML by building a complete website from scratch",
+      "difficulty": "beginner",
+      "topics": ["html-basics", "project", "website-structure"]
+    }
+  ],
+  "css": [
+    {
+      "id": "css-001",
+      "youtubeId": "1Rs2ND1ryYc",
+      "title": "CSS Tutorial - Zero to Hero (Complete Course)",
+      "channel": "freeCodeCamp.org",
+      "duration": 360,
+      "description": "Complete CSS course covering everything from basics to advanced concepts",
+      "difficulty": "beginner",
+      "topics": ["css-basics", "selectors", "box-model", "flexbox", "grid", "responsive"]
+    },
+    {
+      "id": "css-002",
+      "youtubeId": "yfoY53QXEnI",
+      "title": "CSS Crash Course For Absolute Beginners",
+      "channel": "Traversy Media",
+      "duration": 90,
+      "description": "Fast-paced introduction to CSS fundamentals and styling techniques",
+      "difficulty": "beginner",
+      "topics": ["css-basics", "selectors", "box-model"]
+    },
+    {
+      "id": "css-003",
+      "youtubeId": "phWxA89Dy94",
+      "title": "Flexbox CSS In 20 Minutes",
+      "channel": "Traversy Media",
+      "duration": 20,
+      "description": "Quick and practical guide to CSS Flexbox layout",
+      "difficulty": "intermediate",
+      "topics": ["flexbox", "layout"]
+    },
+    {
+      "id": "css-004",
+      "youtubeId": "K74l26pE4YA",
+      "title": "CSS Grid Layout Crash Course",
+      "channel": "Traversy Media",
+      "duration": 30,
+      "description": "Learn CSS Grid layout system with practical examples",
+      "difficulty": "intermediate",
+      "topics": ["grid", "layout"]
+    },
+    {
+      "id": "css-005",
+      "youtubeId": "srvUrASNj0s",
+      "title": "Responsive Web Design - A Practical Guide",
+      "channel": "Kevin Powell",
+      "duration": 45,
+      "description": "Master responsive design with media queries and modern CSS techniques",
+      "difficulty": "intermediate",
+      "topics": ["responsive", "media-queries", "mobile-first"]
+    }
+  ],
+  "javascript": [
+    {
+      "id": "js-001",
+      "youtubeId": "PkZNo7MFNFg",
+      "title": "Learn JavaScript - Full Course for Beginners",
+      "channel": "freeCodeCamp.org",
+      "duration": 195,
+      "description": "Complete JavaScript tutorial covering fundamentals and practical programming concepts",
+      "difficulty": "beginner",
+      "topics": ["javascript-basics", "variables", "functions", "arrays", "objects"]
+    },
+    {
+      "id": "js-002",
+      "youtubeId": "hdI2bqOjy3c",
+      "title": "JavaScript Crash Course For Beginners",
+      "channel": "Traversy Media",
+      "duration": 100,
+      "description": "Fast-paced introduction to JavaScript programming fundamentals",
+      "difficulty": "beginner",
+      "topics": ["javascript-basics", "dom", "events"]
+    },
+    {
+      "id": "js-003",
+      "youtubeId": "jS4aFq5-91M",
+      "title": "JavaScript DOM Manipulation",
+      "channel": "Web Dev Simplified",
+      "duration": 35,
+      "description": "Learn how to manipulate the DOM with JavaScript",
+      "difficulty": "beginner",
+      "topics": ["dom", "events", "manipulation"]
+    },
+    {
+      "id": "js-004",
+      "youtubeId": "R9I85RhI7Cg",
+      "title": "JavaScript Array Methods",
+      "channel": "Web Dev Simplified",
+      "duration": 25,
+      "description": "Master essential JavaScript array methods like map, filter, and reduce",
+      "difficulty": "intermediate",
+      "topics": ["arrays", "methods", "functional-programming"]
+    },
+    {
+      "id": "js-005",
+      "youtubeId": "DHvZLI7Db8E",
+      "title": "Async JavaScript Crash Course",
+      "channel": "Traversy Media",
+      "duration": 45,
+      "description": "Learn asynchronous JavaScript including callbacks, promises, and async/await",
+      "difficulty": "intermediate",
+      "topics": ["async", "promises", "fetch"]
+    },
+    {
+      "id": "js-006",
+      "youtubeId": "W6NZfCO5SIk",
+      "title": "JavaScript Projects for Beginners",
+      "channel": "freeCodeCamp.org",
+      "duration": 480,
+      "description": "Build 15 JavaScript projects to practice your skills",
+      "difficulty": "beginner",
+      "topics": ["projects", "practice", "hands-on"]
+    }
+  ]
+}
