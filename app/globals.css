@@ -273,4 +273,33 @@ se styles for lesson content */
   .prose th {
     @apply bg-muted font-semibold;
   }
+
+  /* Code block with copy button */
+  .code-block-wrapper {
+    @apply relative my-4 rounded-lg border border-border overflow-hidden bg-card;
+  }
+
+  .code-block-header {
+    @apply flex items-center justify-between px-4 py-2 bg-muted border-b border-border;
+  }
+
+  .code-block-lang {
+    @apply text-xs font-mono text-muted-foreground uppercase;
+  }
+
+  .copy-code-btn {
+    @apply flex items-center gap-1.5 px-3 py-1 text-xs font-medium text-foreground bg-background hover:bg-accent hover:text-accent-foreground rounded transition-colors cursor-pointer border border-border;
+  }
+
+  .copy-code-btn svg {
+    @apply w-4 h-4;
+  }
+
+  .code-block-wrapper pre {
+    @apply m-0 border-0 bg-transparent;
+  }
+
+  .code-block-wrapper pre code {
+    @apply block;
+  }
 }

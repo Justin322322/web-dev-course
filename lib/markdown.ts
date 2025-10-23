@@ -2,6 +2,8 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import gfm from 'remark-gfm';
 import matter from 'gray-matter';
+import { visit } from 'unist-util-visit';
+import type { Node } from 'unist';
 
 export interface ParsedMarkdown {
   content: string;
@@ -10,6 +12,65 @@ export interface ParsedMarkdown {
     description?: string;
     [key: string]: unknown;
   };
+}
+
+interface CodeNode {
+  type: string;
+  value: string;
+  lang?: string;
+}
+
+/**
+ * Remark plugin to add copy buttons to code blocks
+ */
+function remarkCopyButton() {
+  return (tree: Node) => {
+    visit(tree, 'code', (node: unknown) => {
+      const codeNode = node as CodeNode;
+      const code = codeNode.value;
+      const lang = codeNode.lang || 'text';
+      
+      // Encode code for the copy button
+      const encodedCode = Buffer.from(code).toString('base64');
+      
+      // Wrap the code block with a container that includes a copy button
+      codeNode.type = 'html';
+      codeNode.value = `
+<div class="code-block-wrapper">
+  <div class="code-block-header">
+    <span class="code-block-lang">${lang}</span>
+    <button class="copy-code-btn" data-code="${encodedCode}" onclick="
+      const code = atob(this.getAttribute('data-code'));
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = this.innerHTML;
+        this.innerHTML = '<svg class=\\'w-4 h-4\\' fill=\\'none\\' stroke=\\'currentColor\\' viewBox=\\'0 0 24 24\\'><path stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\' stroke-width=\\'2\\' d=\\'M5 13l4 4L19 7\\'></path></svg> Copied!';
+        setTimeout(() => { this.innerHTML = originalText; }, 2000);
+      });
+    ">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+      </svg>
+      Copy
+    </button>
+  </div>
+  <pre><code class="language-${lang}">${escapeHtml(code)}</code></pre>
+</div>`;
+    });
+  };
+}
+
+/**
+ * Escape HTML special characters
+ */
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
 /**
@@ -25,6 +86,7 @@ export async function parseMarkdown(markdown: string): Promise<ParsedMarkdown> {
   // Process markdown to HTML
   const processedContent = await remark()
     .use(gfm) // GitHub Flavored Markdown
+    .use(remarkCopyButton) // Add copy buttons to code blocks
     .use(html, { sanitize: false }) // Allow HTML in markdown
     .process(transformedContent);
 
