@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Code, Play, RotateCcw } from 'lucide-react';
@@ -22,6 +22,8 @@ export function PracticeEditor({
   const [code, setCode] = useState(initialCode);
   const [previewContent, setPreviewContent] = useState('');
   const [previewKey, setPreviewKey] = useState(0);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const lineNumbersRef = useRef<HTMLDivElement>(null);
 
   const handleReset = () => {
     setCode(initialCode);
@@ -32,6 +34,17 @@ export function PracticeEditor({
     setPreviewContent(code);
     setPreviewKey(prev => prev + 1);
   };
+
+  // Sync scroll between line numbers and textarea
+  const handleScroll = () => {
+    if (textareaRef.current && lineNumbersRef.current) {
+      lineNumbersRef.current.scrollTop = textareaRef.current.scrollTop;
+    }
+  };
+
+  // Calculate line numbers
+  const lineCount = code.split('\n').length;
+  const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -102,12 +115,33 @@ export function PracticeEditor({
                   </Button>
                 </div>
               </div>
-              <textarea
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-                className="flex-1 min-h-[300px] p-4 font-mono text-sm border border-t-0 rounded-b-lg focus:outline-none focus:ring-2 focus:ring-ring resize-none"
-                spellCheck={false}
-              />
+              <div className="flex-1 flex border border-t-0 rounded-b-lg overflow-hidden bg-background">
+                {/* Line Numbers */}
+                <div 
+                  ref={lineNumbersRef}
+                  className="flex flex-col py-4 px-2 bg-muted/50 text-muted-foreground text-sm font-mono select-none overflow-hidden border-r"
+                  style={{ minWidth: '3.5rem', textAlign: 'right' }}
+                >
+                  {lineNumbers.map((num) => (
+                    <div key={num} className="leading-6 pr-2">
+                      {num}
+                    </div>
+                  ))}
+                </div>
+                {/* Code Textarea */}
+                <textarea
+                  ref={textareaRef}
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  onScroll={handleScroll}
+                  className="flex-1 min-h-[300px] py-4 px-4 font-mono text-sm bg-transparent focus:outline-none resize-none leading-6"
+                  spellCheck={false}
+                  style={{ 
+                    tabSize: 2,
+                    lineHeight: '1.5rem'
+                  }}
+                />
+              </div>
             </div>
           </div>
 

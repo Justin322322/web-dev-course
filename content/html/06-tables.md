@@ -91,7 +91,47 @@ Tables are used to display data in rows and columns. They're perfect for present
 </table>
 ```
 
-## Styling Tables with CSS
+## Table with Caption
+
+```html
+<table>
+    <caption>Student Grades - Fall 2024</caption>
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Math</th>
+            <th>Science</th>
+            <th>English</th>
+            <th>Average</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Alice Johnson</td>
+            <td>95</td>
+            <td>88</td>
+            <td>92</td>
+            <td>91.7</td>
+        </tr>
+        <tr>
+            <td>Bob Smith</td>
+            <td>87</td>
+            <td>90</td>
+            <td>85</td>
+            <td>87.3</td>
+        </tr>
+        <tr>
+            <td>Carol White</td>
+            <td>92</td>
+            <td>94</td>
+            <td>89</td>
+            <td>91.7</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+## Complete Table Example
 
 :::preview height="400px"
 ```html
@@ -99,38 +139,12 @@ Tables are used to display data in rows and columns. They're perfect for present
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Styled Table</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: #007bff;
-            color: white;
-            font-weight: bold;
-        }
-        
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-    </style>
+    <title>Student Grades Table</title>
 </head>
 <body>
     <h1>Student Grades</h1>
-    <table>
+    <table border="1">
+        <caption>Fall 2024 Semester Results</caption>
         <thead>
             <tr>
                 <th>Student</th>
@@ -163,6 +177,12 @@ Tables are used to display data in rows and columns. They're perfect for present
                 <td>91.7</td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">Class Average</td>
+                <td>90.2</td>
+            </tr>
+        </tfoot>
     </table>
 </body>
 </html>
@@ -177,7 +197,7 @@ Create a weekly schedule table with:
 2. Time slots as row headers
 3. Activities in the cells
 4. Use colspan for activities that span multiple days
-5. Style the table with CSS
+5. Add a caption to describe the table
 
 ```html
 <!DOCTYPE html>
@@ -185,9 +205,6 @@ Create a weekly schedule table with:
 <head>
     <meta charset="UTF-8">
     <title>Weekly Schedule</title>
-    <style>
-        /* Add your CSS here */
-    </style>
 </head>
 <body>
     <h1>My Weekly Schedule</h1>

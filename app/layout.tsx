@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Space_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AppTour } from "@/components/app-tour";
+import { MainLayout } from "@/components/layout/MainLayout";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -37,7 +38,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <AppTour />
-          {children}
+          <MainLayout>
+            {children}
+          </MainLayout>
         </ThemeProvider>
       </body>
     </html>

@@ -79,7 +79,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
 
   const stats = {
     completed: progress.completedLessons.length,
-    total: 15,
+    total: 26,
     percentage: progress.progressPercentage,
     bookmarked: progress.bookmarkedLessons.length,
   };

@@ -115,11 +115,11 @@ export function updateLastAccessed(lessonId: string): void {
 
 /**
  * Calculate progress percentage based on total lessons
- * Assuming 15 total lessons (5 per category)
+ * Total: 8 HTML + 9 CSS + 9 JavaScript = 26 lessons
  */
 function calculateProgressPercentage(completedCount: number): number {
-  const totalLessons = 15;
-  return Math.round((completedCount / totalLessons) * 100);
+  const totalLessons = 26;
+  return Math.min(Math.round((completedCount / totalLessons) * 100), 100);
 }
 
 /**
@@ -132,7 +132,7 @@ export function getProgressStats(): {
   bookmarked: number;
 } {
   const progress = getUserProgress();
-  const totalLessons = 15;
+  const totalLessons = 26;
   
   return {
     completed: progress.completedLessons.length,

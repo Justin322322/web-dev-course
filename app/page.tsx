@@ -1,11 +1,9 @@
-import { MainLayout } from "@/components/layout/MainLayout";
 import { Code, Palette, Zap } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <MainLayout>
-      <div className="space-y-12">
+    <div className="space-y-12">
         {/* Hero Section */}
         <section className="text-center space-y-6 py-12">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground font-mono">
@@ -138,6 +136,5 @@ export default function Home() {
           </div>
         </section>
       </div>
-    </MainLayout>
   );
 }

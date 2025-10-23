@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Code, Palette, Zap } from 'lucide-react';
-import { MainLayout } from '@/components/layout/MainLayout';
 
 interface PageProps {
   params: Promise<{
@@ -70,9 +69,8 @@ export default async function CategoryPage({ params }: PageProps) {
   const Icon = data.icon;
 
   return (
-    <MainLayout>
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto">
         {/* Category Header */}
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-4">
@@ -116,8 +114,7 @@ export default async function CategoryPage({ params }: PageProps) {
             ← Back to Home
           </Link>
         </div>
-        </div>
       </div>
-    </MainLayout>
+    </div>
   );
 }

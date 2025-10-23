@@ -2,14 +2,11 @@
 
 HTML5 provides native support for embedding audio, video, and other media content without requiring plugins.
 
-## Images
+## Advanced Image Techniques
 
 We covered basic images earlier, but here are more advanced techniques:
 
 ```html
-<!-- Responsive image -->
-<img src="photo.jpg" alt="Description" style="max-width: 100%; height: auto;">
-
 <!-- Image with srcset for different screen sizes -->
 <img src="small.jpg" 
      srcset="small.jpg 480w, medium.jpg 800w, large.jpg 1200w"
@@ -22,6 +19,9 @@ We covered basic images earlier, but here are more advanced techniques:
     <source media="(min-width: 400px)" srcset="medium.jpg">
     <img src="small.jpg" alt="Flexible image">
 </picture>
+
+<!-- Image with loading attribute for performance -->
+<img src="photo.jpg" alt="Description" loading="lazy" width="800" height="600">
 ```
 
 ## Video
@@ -91,7 +91,6 @@ We covered basic images earlier, but here are more advanced techniques:
 <iframe src="https://www.google.com/maps/embed?pb=..." 
         width="600" 
         height="450" 
-        style="border:0;" 
         allowfullscreen="" 
         loading="lazy">
 </iframe>
@@ -196,7 +195,7 @@ We covered basic images earlier, but here are more advanced techniques:
     
     <section class="media-section">
         <h2>SVG Graphics</h2>
-        <svg width="200" height="200" style="border: 1px solid #ccc;">
+        <svg width="200" height="200">
             <circle cx="100" cy="100" r="80" fill="#007bff" opacity="0.7" />
             <rect x="50" y="50" width="100" height="100" fill="#28a745" opacity="0.5" />
             <line x1="0" y1="0" x2="200" y2="200" stroke="#dc3545" stroke-width="3" />
@@ -206,9 +205,7 @@ We covered basic images earlier, but here are more advanced techniques:
     <section class="media-section">
         <h2>Embedded Content</h2>
         <p>You can embed YouTube videos, Google Maps, and other external content using iframes.</p>
-        <div style="background-color: #ddd; padding: 40px; text-align: center; border-radius: 5px;">
-            [Iframe content would appear here]
-        </div>
+        <p><em>[Iframe examples shown above]</em></p>
     </section>
 </body>
 </html>
@@ -235,12 +232,12 @@ We covered basic images earlier, but here are more advanced techniques:
 
 :::practice title="Create a Media Gallery"
 Build a multimedia page with:
-1. A gallery of at least 3 images
+1. A gallery of at least 3 images with proper alt text
 2. An embedded video with controls
 3. An audio player
 4. Use figure and figcaption for media
-5. Create a simple SVG graphic
-6. Style everything with CSS
+5. Create a simple SVG graphic (circle, rectangle, or line)
+6. Add appropriate width and height attributes
 
 ```html
 <!DOCTYPE html>
@@ -248,9 +245,6 @@ Build a multimedia page with:
 <head>
     <meta charset="UTF-8">
     <title>Media Gallery</title>
-    <style>
-        /* Add your CSS here */
-    </style>
 </head>
 <body>
     <h1>My Media Gallery</h1>

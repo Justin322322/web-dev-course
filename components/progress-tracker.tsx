@@ -2,9 +2,43 @@
 
 import { useProgress } from "@/lib/progress-context";
 import { CheckCircle2, BookmarkIcon, Trophy } from "lucide-react";
+import { useEffect, useRef } from "react";
+
+// Store the last rendered percentage globally to persist across remounts
+let globalLastPercentage: number | null = null;
 
 export function ProgressTracker() {
   const { stats } = useProgress();
+  const progressBarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!progressBarRef.current) return;
+
+    const bar = progressBarRef.current;
+    const currentValue = stats.percentage;
+
+    // First ever render across all mounts - set immediately without animation
+    if (globalLastPercentage === null) {
+      bar.style.transition = 'none';
+      bar.style.width = `${currentValue}%`;
+      globalLastPercentage = currentValue;
+      return;
+    }
+
+    // Component remounted but value is the same - set immediately without animation
+    if (globalLastPercentage === currentValue) {
+      bar.style.transition = 'none';
+      bar.style.width = `${currentValue}%`;
+      return;
+    }
+
+    // Value actually changed - animate the change
+    if (globalLastPercentage !== currentValue) {
+      bar.style.transition = 'width 500ms ease-out';
+      bar.style.width = `${currentValue}%`;
+      globalLastPercentage = currentValue;
+    }
+  }, [stats.percentage]);
 
   return (
     <div className="space-y-4">
@@ -16,8 +50,9 @@ export function ProgressTracker() {
         </div>
         <div className="h-2 bg-muted rounded-full overflow-hidden">
           <div
-            className="h-full bg-linear-to-r from-primary via-accent to-secondary transition-all duration-500"
-            style={{ width: `${stats.percentage}%` }}
+            ref={progressBarRef}
+            className="h-full bg-linear-to-r from-primary via-accent to-secondary"
+            style={{ width: '0%' }}
           />
         </div>
       </div>

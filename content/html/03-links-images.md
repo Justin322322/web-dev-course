@@ -45,11 +45,11 @@ The `<img>` element embeds images in your webpage:
 <!-- Image with width and height -->
 <img src="logo.png" alt="Company Logo" width="200" height="100">
 
-<!-- Responsive image -->
-<img src="photo.jpg" alt="Description" style="max-width: 100%; height: auto;">
-
 <!-- Image with title (tooltip) -->
 <img src="icon.png" alt="Info icon" title="Click for more information">
+
+<!-- Image with loading attribute -->
+<img src="photo.jpg" alt="Description" loading="lazy">
 ```
 
 ### Image Best Practices

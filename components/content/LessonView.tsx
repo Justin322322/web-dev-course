@@ -112,8 +112,13 @@ export function LessonView({
         </div>
       )}
 
+      {/* Bottom Actions */}
+      <div className="mb-8 pt-8 border-t border-border">
+        <LessonActions lessonId={lessonId} />
+      </div>
+
       {/* Navigation */}
-      <div className="flex items-center justify-between pt-8 border-t border-border">
+      <div className="flex items-center justify-between">
         <div className="flex-1">
           {previousLesson && (
             <Link

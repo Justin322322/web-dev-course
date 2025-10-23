@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
 import { LessonView } from '@/components/content/LessonView';
-import { MainLayout } from '@/components/layout/MainLayout';
 import { getMarkdownFilename, getLessonIds } from '@/lib/lesson-mapping';
 import { removeFirstH1, extractFirstH1 } from '@/lib/markdown-utils';
 import { getVideosForLesson } from '@/lib/video-loader';
@@ -112,19 +111,17 @@ export default async function LessonPage({ params }: PageProps) {
   const isLastLesson = currentIndex === lessons.length - 1;
 
   return (
-    <MainLayout>
-      <div className="container mx-auto px-4 py-8">
-        <LessonView
-          lessonId={lessonId}
-          title={title}
-          content={contentWithoutH1}
-          category={category}
-          videoResources={videoResources}
-          isLastLesson={isLastLesson}
-          previousLesson={previousLesson}
-          nextLesson={nextLesson}
-        />
-      </div>
-    </MainLayout>
+    <div className="container mx-auto px-4 py-8">
+      <LessonView
+        lessonId={lessonId}
+        title={title}
+        content={contentWithoutH1}
+        category={category}
+        videoResources={videoResources}
+        isLastLesson={isLastLesson}
+        previousLesson={previousLesson}
+        nextLesson={nextLesson}
+      />
+    </div>
   );
 }
