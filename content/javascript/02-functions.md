@@ -126,6 +126,7 @@ console.log(localVar);  // Error: localVar is not defined
 
 ## Complete Example
 
+:::preview height="400px"
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -231,6 +232,7 @@ console.log(localVar);  // Error: localVar is not defined
 </body>
 </html>
 ```
+:::
 
 ## Callback Functions
 
@@ -250,9 +252,47 @@ console.log(doubled); // [2, 4, 6, 8, 10]
 
 ## Practice Exercise
 
-Create a webpage with functions that:
-- Calculate the area of a rectangle
-- Convert temperature from Celsius to Fahrenheit
-- Check if a number is even or odd
-- Find the maximum of three numbers
-- Reverse a string
+:::practice title="Build a Calculator with Functions"
+Create a simple calculator using functions:
+1. Create a function to add two numbers
+2. Create a function to subtract two numbers
+3. Create a function to multiply two numbers
+4. Create a function to divide two numbers
+5. Display the results on the page
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Calculator</h1>
+    <input type="number" id="num1" placeholder="First number">
+    <input type="number" id="num2" placeholder="Second number">
+    <br>
+    <button onclick="add()">Add</button>
+    <button onclick="subtract()">Subtract</button>
+    <button onclick="multiply()">Multiply</button>
+    <button onclick="divide()">Divide</button>
+    <p id="result"></p>
+    
+    <script>
+        // Add your functions here
+        
+    </script>
+</body>
+</html>
+```
+:::

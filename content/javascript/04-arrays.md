@@ -224,6 +224,7 @@ console.log(numbers); // [100, 40, 25, 10, 5, 1]
 
 ## Complete Example
 
+:::preview height="350px"
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -316,13 +317,59 @@ console.log(numbers); // [100, 40, 25, 10, 5, 1]
 </body>
 </html>
 ```
+:::
 
 ## Practice Exercise
 
-Create a program that:
-- Stores a list of student names
-- Adds new students
-- Removes students
-- Sorts students alphabetically
-- Filters students by name length
-- Displays the total number of students
+:::practice title="Build a Todo List with Arrays"
+Create a todo list application using arrays:
+1. Create an array to store tasks
+2. Add a function to add new tasks
+3. Add a function to remove tasks
+4. Display all tasks on the page
+5. Show the total number of tasks
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        #taskList {
+            margin-top: 20px;
+        }
+        .task {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Todo List</h1>
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+    <div id="taskList"></div>
+    
+    <script>
+        let tasks = [];
+        
+        // Add your functions here
+        
+    </script>
+</body>
+</html>
+```
+:::

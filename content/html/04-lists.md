@@ -97,6 +97,7 @@ Description lists are used for term-definition pairs:
 
 ## Complete Example
 
+:::preview height="700px"
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -157,11 +158,29 @@ Description lists are used for term-definition pairs:
 </body>
 </html>
 ```
+:::
 
 ## Practice Exercise
 
-Create a recipe page that includes:
-- An unordered list of ingredients
-- An ordered list of cooking steps
-- A nested list showing ingredient categories
-- A description list defining cooking terms
+:::practice title="Create a Recipe Page"
+Create a recipe page with:
+1. An h1 heading with the recipe name
+2. An unordered list of ingredients
+3. An ordered list of cooking steps
+4. A nested list for ingredient categories (e.g., "Dry ingredients" and "Wet ingredients")
+5. A description list defining cooking terms
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Recipe</title>
+</head>
+<body>
+    <!-- Add your recipe here -->
+    
+</body>
+</html>
+```
+:::

@@ -12,9 +12,11 @@ CSS stands for Cascading Style Sheets. It controls the visual presentation of HT
 
 Add styles directly to HTML elements using the `style` attribute:
 
+:::preview height="100px"
 ```html
 <p style="color: blue; font-size: 18px;">This is a blue paragraph.</p>
 ```
+:::
 
 ### 2. Internal CSS
 
@@ -137,62 +139,78 @@ height: 200px;
 
 ## Complete Example
 
+:::preview height="400px"
+```html
+<h1>Welcome to CSS</h1>
+
+<div class="card">
+    <h2>What is CSS?</h2>
+    <p>CSS is used to <span class="highlight">style web pages</span> and make them look beautiful.</p>
+</div>
+
+<div class="card">
+    <h2>Why Learn CSS?</h2>
+    <p>CSS allows you to create <span class="highlight">professional-looking websites</span> with ease.</p>
+</div>
+```
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.highlight {
+    color: #007bff;
+    font-weight: bold;
+}
+```
+:::
+
+## Practice Exercise
+
+:::practice title="Style Your First Page"
+Create and style a simple webpage:
+1. Set a background color for the body
+2. Style the h1 with a custom color and font size
+3. Create a .highlight class with a different color
+4. Add padding to paragraphs
+5. Style a button with background color and padding
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CSS Introduction</title>
+    <title>My Styled Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-        }
+        /* Add your CSS here */
         
-        h1 {
-            color: #333;
-            text-align: center;
-            border-bottom: 3px solid #007bff;
-            padding-bottom: 10px;
-        }
-        
-        .card {
-            background-color: white;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .highlight {
-            color: #007bff;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
     <h1>Welcome to CSS</h1>
-    
-    <div class="card">
-        <h2>What is CSS?</h2>
-        <p>CSS is used to <span class="highlight">style web pages</span> and make them look beautiful.</p>
-    </div>
-    
-    <div class="card">
-        <h2>Why Learn CSS?</h2>
-        <p>CSS allows you to create <span class="highlight">professional-looking websites</span> with ease.</p>
-    </div>
+    <p>This is a regular paragraph.</p>
+    <p class="highlight">This paragraph should be highlighted!</p>
+    <button>Click Me</button>
 </body>
 </html>
 ```
-
-## Practice Exercise
-
-Create an HTML page and style it with CSS:
-- Set a background color for the page
-- Style headings with different colors and sizes
-- Create a class for highlighted text
-- Add padding and margins to elements
-- Experiment with different fonts
+:::

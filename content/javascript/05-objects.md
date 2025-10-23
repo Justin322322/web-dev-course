@@ -196,6 +196,7 @@ console.log(updatedPerson); // { name: 'John', age: 31 }
 
 ## Complete Example
 
+:::preview height="700px"
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -341,6 +342,7 @@ console.log(updatedPerson); // { name: 'John', age: 31 }
 </body>
 </html>
 ```
+:::
 
 ## Constructor Functions
 
@@ -362,9 +364,56 @@ person1.greet(); // 'Hello, I'm John'
 
 ## Practice Exercise
 
-Create a library system with:
-- Book objects with title, author, year, and availability
-- Methods to check out and return books
-- Display all books
-- Search books by author
-- Filter available books
+:::practice title="Create a Contact Manager"
+Build a contact manager using objects:
+1. Create an array to store contact objects
+2. Each contact should have: name, email, phone
+3. Add a function to add new contacts
+4. Display all contacts on the page
+5. Add a method to each contact object
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        .contact {
+            background-color: #f0f0f0;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contact Manager</h1>
+    <div>
+        <input type="text" id="name" placeholder="Name">
+        <input type="email" id="email" placeholder="Email">
+        <input type="tel" id="phone" placeholder="Phone">
+        <button onclick="addContact()">Add Contact</button>
+    </div>
+    <div id="contactList"></div>
+    
+    <script>
+        let contacts = [];
+        
+        // Add your code here
+        
+    </script>
+</body>
+</html>
+```
+:::

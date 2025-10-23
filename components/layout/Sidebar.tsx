@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, ChevronRight, Code, Palette, Zap, Home, CheckCircle2, Circle, Bookmark } from "lucide-react";
@@ -44,10 +44,10 @@ const courseData: Section[] = [
     icon: <Palette className="w-5 h-5" />,
     lessons: [
       { id: "css-intro", title: "Introduction to CSS", completed: false },
-      { id: "css-selectors", title: "Selectors & Specificity", completed: false },
+      { id: "css-selectors", title: "CSS Selectors", completed: false },
       { id: "css-box-model", title: "Box Model", completed: false },
-      { id: "css-flexbox", title: "Flexbox Layout", completed: false },
-      { id: "css-grid", title: "Grid Layout", completed: false },
+      { id: "css-flexbox", title: "CSS Flexbox", completed: false },
+      { id: "css-grid", title: "Responsive Web Design", completed: false },
     ],
   },
   {
@@ -56,25 +56,66 @@ const courseData: Section[] = [
     icon: <Zap className="w-5 h-5" />,
     lessons: [
       { id: "js-intro", title: "Introduction to JavaScript", completed: false },
-      { id: "js-variables", title: "Variables & Data Types", completed: false },
       { id: "js-functions", title: "Functions", completed: false },
       { id: "js-dom", title: "DOM Manipulation", completed: false },
-      { id: "js-events", title: "Events & Event Handling", completed: false },
+      { id: "js-arrays", title: "JavaScript Arrays", completed: false },
+      { id: "js-objects", title: "JavaScript Objects", completed: false },
     ],
   },
 ];
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
-  const [expandedSections, setExpandedSections] = useState<string[]>(["html"]);
   const { isCompleted, isBookmarked } = useProgress();
 
+  // Get the current category from the pathname
+  const currentCategory = useMemo(() => {
+    const pathParts = pathname.split('/').filter(Boolean);
+    return pathParts.length >= 1 ? pathParts[0] : null;
+  }, [pathname]);
+
+  // Track manually toggled sections
+  const [manuallyToggledSections, setManuallyToggledSections] = useState<Set<string>>(new Set());
+
+  // Compute expanded sections: always include current category unless manually collapsed
+  const expandedSections = useMemo(() => {
+    const sections = new Set<string>();
+    
+    // Always expand the current category unless it was manually collapsed
+    if (currentCategory && !manuallyToggledSections.has(currentCategory)) {
+      sections.add(currentCategory);
+    }
+    
+    // Add back any manually expanded sections
+    manuallyToggledSections.forEach(sectionId => {
+      // If it's in the manually toggled set and it's not the current category,
+      // or if it is the current category, check if we should keep it expanded
+      const section = courseData.find(s => s.id === sectionId);
+      if (section) {
+        // Check if any lesson in this section is active
+        const hasActiveLesson = section.lessons.some(lesson => 
+          pathname === `/${sectionId}/${lesson.id}`
+        );
+        
+        if (hasActiveLesson || sectionId !== currentCategory) {
+          sections.add(sectionId);
+        }
+      }
+    });
+    
+    return Array.from(sections);
+  }, [pathname, currentCategory, manuallyToggledSections]);
+
   const toggleSection = (sectionId: string) => {
-    setExpandedSections((prev) =>
-      prev.includes(sectionId)
-        ? prev.filter((id) => id !== sectionId)
-        : [...prev, sectionId]
-    );
+    setManuallyToggledSections((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(sectionId)) {
+        newSet.delete(sectionId);
+      } else {
+        newSet.add(sectionId);
+      }
+      return newSet;
+    });
   };
 
   const isActive = (path: string) => pathname === path;
@@ -91,6 +132,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       {/* Sidebar */}
       <aside
+        data-tour="sidebar"
         className={`fixed left-0 top-16 bottom-0 w-72 bg-sidebar border-r border-sidebar-border z-40 transition-transform duration-300 flex flex-col ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
@@ -184,7 +226,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         </nav>
 
         {/* Progress Footer - at bottom of nav */}
-        <div className="p-4 bg-sidebar border-t border-sidebar-border">
+        <div className="p-4 bg-sidebar border-t border-sidebar-border" data-tour="progress">
           <ProgressTracker />
         </div>
       </aside>

@@ -222,6 +222,7 @@ h1, h2, h3 {
 
 ## Complete Example
 
+:::preview height="500px"
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -304,6 +305,7 @@ h1, h2, h3 {
 </body>
 </html>
 ```
+:::
 
 ## Selector Specificity
 
@@ -330,9 +332,39 @@ p { color: black; }
 
 ## Practice Exercise
 
-Create a webpage with:
-- A navigation menu that changes color on hover
-- Alternating row colors in a list
-- Styled form inputs with focus states
-- A quote with decorative quotation marks using pseudo-elements
-- Different styles for external vs internal links
+Now practice using different CSS selectors!
+
+:::practice title="Style a Card Component"
+Create a card with:
+1. A class selector for the card container
+2. Hover effect on the card
+3. Style the heading inside the card
+4. Add a colored border to the button
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Component</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        /* Add your CSS here */
+        
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Product Title</h2>
+        <p>This is a description of the product.</p>
+        <button class="btn">Buy Now</button>
+    </div>
+</body>
+</html>
+```
+:::

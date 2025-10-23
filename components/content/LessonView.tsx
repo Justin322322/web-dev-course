@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Video } from "lucide-react";
 import { VideoEmbed } from "./VideoEmbed";
 import { LessonActions } from "@/components/lesson-actions";
 import { useProgress } from "@/lib/progress-context";
+import { MarkdownRenderer } from "./markdown-renderer";
 import type { VideoResource } from "@/lib/types";
 
 interface LessonViewProps {
@@ -83,12 +84,14 @@ export function LessonView({
           {category}
         </div>
         <h1 className="text-4xl font-bold mb-4">{title}</h1>
-        <LessonActions lessonId={lessonId} />
+        <div data-tour="lesson-actions">
+          <LessonActions lessonId={lessonId} />
+        </div>
       </div>
 
       {/* Lesson Content */}
-      <div className="prose prose-lg dark:prose-invert max-w-none mb-12">
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="mb-12" data-tour="lesson-content">
+        <MarkdownRenderer content={content} />
       </div>
 
       {/* Video Resources Section - Only show on last lesson */}

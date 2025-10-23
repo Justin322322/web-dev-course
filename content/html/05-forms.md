@@ -193,12 +193,32 @@ HTML5 provides built-in validation:
 
 ## Practice Exercise
 
+:::practice title="Build a Registration Form"
 Create a registration form with:
-- Username and password fields
-- Email field with validation
-- Date of birth picker
-- Gender radio buttons
-- Interests checkboxes
-- Country dropdown
-- Bio textarea
-- Submit and reset buttons
+1. Username field (text input, required)
+2. Email field (email input, required)
+3. Password field (password input, required)
+4. Date of birth (date input)
+5. Gender (radio buttons: Male, Female, Other)
+6. Interests (checkboxes: Sports, Music, Reading, Gaming)
+7. Country (dropdown select)
+8. Bio (textarea)
+9. Submit button
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form>
+        <!-- Add your form fields here -->
+        
+    </form>
+</body>
+</html>
+```
+:::

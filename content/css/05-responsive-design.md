@@ -97,6 +97,7 @@ Create a responsive grid layout:
 
 ## Complete Example
 
+:::preview height="600px"
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -225,11 +226,47 @@ Create a responsive grid layout:
 </body>
 </html>
 ```
+:::
 
 ## Practice Exercise
 
-Create a responsive portfolio page with:
-- A navigation that stacks on mobile, horizontal on desktop
-- A grid of projects (1 column mobile, 2 tablet, 3 desktop)
-- Responsive images
-- Different font sizes for different screen sizes
+:::practice title="Create a Responsive Layout"
+Build a responsive page that adapts to different screen sizes:
+1. Add a viewport meta tag
+2. Use media queries for mobile (max-width: 768px)
+3. Make images responsive with max-width: 100%
+4. Change grid layout: 1 column on mobile, 2 on tablet, 3 on desktop
+5. Adjust font sizes for different screens
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        /* Add your responsive CSS here */
+        
+    </style>
+</head>
+<body>
+    <h1>My Portfolio</h1>
+    <div class="grid">
+        <div class="card">Project 1</div>
+        <div class="card">Project 2</div>
+        <div class="card">Project 3</div>
+    </div>
+</body>
+</html>
+```
+:::

@@ -18,10 +18,10 @@ export const lessonMapping: Record<string, string> = {
   
   // JavaScript lessons
   'js-intro': '01-introduction.md',
-  'js-variables': '01-introduction.md', // Reuse intro for now
   'js-functions': '02-functions.md',
   'js-dom': '03-dom-manipulation.md',
-  'js-events': '03-dom-manipulation.md', // Reuse DOM for now
+  'js-arrays': '04-arrays.md',
+  'js-objects': '05-objects.md',
 };
 
 /**

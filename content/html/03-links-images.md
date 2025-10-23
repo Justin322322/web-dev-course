@@ -21,8 +21,8 @@ The `<a>` (anchor) element creates hyperlinks:
 <!-- Link to another page on your site -->
 <a href="/about.html">About Us</a>
 
-<!-- Link to a section on the same page -->
-<a href="#contact">Jump to Contact Section</a>
+<!-- Link to a section on the same page (using id attribute) -->
+<a href="#footer">Jump to Footer Section</a>
 
 <!-- Email link -->
 <a href="mailto:hello@example.com">Send us an email</a>
@@ -71,6 +71,7 @@ You can make images clickable by wrapping them in anchor tags:
 
 ## Complete Example
 
+:::preview height="500px"
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -82,25 +83,23 @@ You can make images clickable by wrapping them in anchor tags:
     <h1>Welcome to My Portfolio</h1>
     
     <nav>
-        <a href="#about">About</a> |
-        <a href="#projects">Projects</a> |
-        <a href="#contact">Contact</a>
+        About | Projects | Contact
     </nav>
     
-    <section id="about">
+    <section>
         <h2>About Me</h2>
-        <img src="profile.jpg" alt="Profile photo" width="300">
+        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=300&h=300&fit=crop" alt="Profile photo" width="300">
         <p>I'm a web developer passionate about creating amazing websites.</p>
     </section>
     
-    <section id="projects">
+    <section>
         <h2>My Projects</h2>
         <a href="https://github.com/username" target="_blank" rel="noopener noreferrer">
-            <img src="github-logo.png" alt="Visit my GitHub profile" width="50">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="Visit my GitHub profile" width="50">
         </a>
     </section>
     
-    <section id="contact">
+    <section>
         <h2>Contact</h2>
         <p>
             <a href="mailto:hello@example.com">Email me</a> or 
@@ -110,12 +109,29 @@ You can make images clickable by wrapping them in anchor tags:
 </body>
 </html>
 ```
+:::
 
 ## Practice Exercise
 
-Create a simple photo gallery page with:
-- A main heading
-- At least 3 images with descriptive alt text
-- Links to external websites
-- Navigation links that jump to different sections
-- One clickable image that links to another page
+:::practice title="Build a Photo Gallery"
+Create a photo gallery page with:
+1. A main heading "My Photo Gallery"
+2. Three images using placeholder URLs (https://via.placeholder.com/300)
+3. Each image should have descriptive alt text
+4. Add a link to an external website
+5. Create a navigation menu with internal links
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Gallery</title>
+</head>
+<body>
+    <!-- Add your gallery here -->
+    
+</body>
+</html>
+```
+:::

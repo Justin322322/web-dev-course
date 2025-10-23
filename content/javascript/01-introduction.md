@@ -141,6 +141,7 @@ let message = `Hello, ${name}!`; // Template literal
 
 ## Complete Example
 
+:::preview height="300px"
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -186,12 +187,35 @@ let message = `Hello, ${name}!`; // Template literal
 </body>
 </html>
 ```
+:::
 
 ## Practice Exercise
 
-Create an HTML page with JavaScript that:
-- Displays your name in an h1 element
-- Has a button that changes the text color
-- Has a button that shows an alert
-- Logs a message to the console
-- Uses variables to store and display information
+:::practice title="Your First JavaScript Program"
+Create an interactive page with JavaScript:
+1. Display a greeting message in an h1
+2. Create a button that shows an alert when clicked
+3. Create another button that changes the text color
+4. Use variables to store your name and age
+5. Log a message to the console
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Practice</title>
+</head>
+<body>
+    <h1 id="greeting">Hello!</h1>
+    <button onclick="showAlert()">Click Me</button>
+    <button onclick="changeColor()">Change Color</button>
+    
+    <script>
+        // Add your JavaScript here
+        
+    </script>
+</body>
+</html>
+```
+:::

@@ -155,6 +155,7 @@ By default, width and height only apply to content. Use `box-sizing` to include 
 
 ## Complete Example
 
+:::preview height="700px"
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -256,6 +257,7 @@ By default, width and height only apply to content. Use `box-sizing` to include 
 </body>
 </html>
 ```
+:::
 
 ## Margin Collapse
 
@@ -293,10 +295,38 @@ display: none;
 
 ## Practice Exercise
 
-Create a card layout with:
-- A container with padding and centered content
-- Multiple cards with padding, margin, and borders
-- Buttons with padding and hover effects
-- Rounded corners using border-radius
-- Box shadows for depth
-- Proper spacing between all elements
+:::practice title="Build a Card Layout"
+Create a card component using the box model:
+1. Create a .card class with padding, margin, and border
+2. Add border-radius for rounded corners
+3. Add a box-shadow for depth
+4. Create a .button class with padding
+5. Add hover effects to the button
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        /* Add your CSS here */
+        
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Product Title</h2>
+        <p>This is a description of the product.</p>
+        <button class="button">Buy Now</button>
+    </div>
+</body>
+</html>
+```
+:::

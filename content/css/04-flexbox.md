@@ -170,6 +170,7 @@ Overrides align-items for individual items:
 
 ## Complete Example
 
+:::preview height="900px"
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -338,6 +339,7 @@ Overrides align-items for individual items:
 </body>
 </html>
 ```
+:::
 
 ## Common Flexbox Patterns
 
@@ -380,9 +382,56 @@ main {
 
 ## Practice Exercise
 
-Create a responsive webpage with:
-- A navigation bar with logo and links
-- A hero section with centered content
-- A grid of cards that wraps on smaller screens
-- A sidebar layout with fixed-width sidebar
-- A footer that sticks to the bottom
+:::practice title="Build a Flexbox Layout"
+Create a flexible layout using Flexbox:
+1. Create a navigation bar with space-between alignment
+2. Create a card container with flex-wrap
+3. Make cards flexible with flex: 1 1 300px
+4. Center content in a hero section
+5. Add gap between flex items
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox Layout</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Add your Flexbox CSS here */
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Logo</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+    
+    <div class="hero">
+        <h1>Welcome</h1>
+        <p>This content should be centered</p>
+    </div>
+    
+    <div class="card-container">
+        <div class="card">Card 1</div>
+        <div class="card">Card 2</div>
+        <div class="card">Card 3</div>
+    </div>
+</body>
+</html>
+```
+:::

@@ -26,17 +26,17 @@ const lessonData: Record<string, { id: string; title: string }[]> = {
   ],
   css: [
     { id: 'css-intro', title: 'Introduction to CSS' },
-    { id: 'css-selectors', title: 'Selectors & Specificity' },
+    { id: 'css-selectors', title: 'CSS Selectors' },
     { id: 'css-box-model', title: 'Box Model' },
-    { id: 'css-flexbox', title: 'Flexbox Layout' },
-    { id: 'css-grid', title: 'Grid Layout' },
+    { id: 'css-flexbox', title: 'CSS Flexbox' },
+    { id: 'css-grid', title: 'Responsive Web Design' },
   ],
   javascript: [
     { id: 'js-intro', title: 'Introduction to JavaScript' },
-    { id: 'js-variables', title: 'Variables & Data Types' },
     { id: 'js-functions', title: 'Functions' },
     { id: 'js-dom', title: 'DOM Manipulation' },
-    { id: 'js-events', title: 'Events & Event Handling' },
+    { id: 'js-arrays', title: 'JavaScript Arrays' },
+    { id: 'js-objects', title: 'JavaScript Objects' },
   ],
 };
 

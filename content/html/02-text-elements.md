@@ -51,6 +51,7 @@ HTML provides several elements for formatting text:
 
 ## Complete Example
 
+:::preview height="400px"
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -74,12 +75,30 @@ HTML provides several elements for formatting text:
 </body>
 </html>
 ```
+:::
 
 ## Practice Exercise
 
-Create a simple blog post using headings, paragraphs, and text formatting elements. Include at least:
-- One main heading
-- Two subheadings
-- Three paragraphs
-- Bold and italic text
-- A horizontal rule
+:::practice title="Create a Blog Post"
+Create a blog post about your favorite hobby with:
+1. An h1 main heading
+2. Two h2 subheadings for different sections
+3. At least three paragraphs
+4. Use <strong> for important words
+5. Use <em> for emphasis
+6. Add a horizontal rule between sections
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog Post</title>
+</head>
+<body>
+    <!-- Add your blog post here -->
+    
+</body>
+</html>
+```
+:::

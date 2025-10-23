@@ -16,6 +16,7 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <button
+        data-tour="theme-toggle"
         className="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-accent transition-colors"
         aria-label="Toggle theme"
       >
@@ -26,6 +27,7 @@ export function ThemeToggle() {
 
   return (
     <button
+      data-tour="theme-toggle"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-accent transition-colors"
       aria-label="Toggle theme"

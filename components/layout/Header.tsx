@@ -2,6 +2,7 @@
 
 import { Menu, Code2 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { TourTrigger } from "@/components/tour-trigger";
 
 interface HeaderProps {
   onMenuToggle: () => void;
@@ -36,7 +37,8 @@ export function Header({ onMenuToggle }: HeaderProps) {
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          <TourTrigger />
           <ThemeToggle />
         </div>
       </div>
