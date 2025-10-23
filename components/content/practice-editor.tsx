@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Code, Play, RotateCcw } from 'lucide-react';
+import { Code, Play, RotateCcw, Maximize2, Minimize2, Eye, EyeOff } from 'lucide-react';
 
 interface PracticeEditorProps {
   title: string;
@@ -12,28 +12,64 @@ interface PracticeEditorProps {
   height?: string;
 }
 
-export function PracticeEditor({ 
-  title, 
-  instructions, 
+export function PracticeEditor({
+  title,
+  instructions,
   initialCode,
-  height = '400px' 
+  height = '400px'
 }: PracticeEditorProps) {
   const [open, setOpen] = useState(false);
   const [code, setCode] = useState(initialCode);
   const [previewContent, setPreviewContent] = useState('');
   const [previewKey, setPreviewKey] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(true);
+  const [autoRun] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
+  const autoRunTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleReset = () => {
     setCode(initialCode);
     setPreviewContent('');
   };
 
-  const handleRun = () => {
+  const handleRun = useCallback(() => {
     setPreviewContent(code);
     setPreviewKey(prev => prev + 1);
+  }, [code]);
+
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
   };
+
+  // Auto-run with debounce
+  useEffect(() => {
+    if (autoRun && code) {
+      if (autoRunTimeoutRef.current) {
+        clearTimeout(autoRunTimeoutRef.current);
+      }
+      autoRunTimeoutRef.current = setTimeout(() => {
+        handleRun();
+      }, 1000);
+    }
+    return () => {
+      if (autoRunTimeoutRef.current) {
+        clearTimeout(autoRunTimeoutRef.current);
+      }
+    };
+  }, [code, autoRun, handleRun]);
+
+  // Run on initial open
+  useEffect(() => {
+    if (open && !previewContent) {
+      // Use setTimeout to avoid calling setState synchronously in effect
+      const timer = setTimeout(() => {
+        handleRun();
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [open, previewContent, handleRun]);
 
   // Sync scroll between line numbers and textarea
   const handleScroll = () => {
@@ -54,9 +90,31 @@ export function PracticeEditor({
           Open Practice Editor
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-[95vw] max-w-7xl p-0">
-        <div className="flex items-center justify-between px-5 py-3.5 border-b">
-          <h2 className="text-lg font-semibold leading-none">{title}</h2>
+      <DialogContent className={`p-0 flex flex-col ${isFullscreen ? 'w-screen h-screen max-w-none' : 'w-[95vw] max-w-7xl h-[90vh]'}`}>
+        <div className="flex items-center justify-between px-5 py-3.5 border-b bg-background shrink-0">
+          <div className="flex items-center gap-3">
+            <h2 className="text-lg font-semibold leading-none">{title}</h2>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowInstructions(!showInstructions)}
+                className="h-7 text-xs"
+                title={showInstructions ? "Hide instructions" : "Show instructions"}
+              >
+                {showInstructions ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleFullscreen}
+                className="h-7 text-xs"
+                title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+              >
+                {isFullscreen ? <Minimize2 className="w-3 h-3" /> : <Maximize2 className="w-3 h-3" />}
+              </Button>
+            </div>
+          </div>
           <button
             onClick={() => setOpen(false)}
             className="rounded-full opacity-70 hover:opacity-100 transition-all p-1 hover:bg-accent -mr-1"
@@ -78,25 +136,27 @@ export function PracticeEditor({
             </svg>
           </button>
         </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-6">
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-6 flex-1 min-h-0 overflow-hidden">
           {/* Left Panel - Instructions & Code Editor */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 h-full min-h-0 overflow-hidden">
             {/* Instructions */}
-            <div className="bg-muted p-4 rounded-lg">
-              <h3 className="font-semibold mb-2">Instructions</h3>
-              <div className="text-sm text-muted-foreground whitespace-pre-wrap">
-                {instructions}
+            {showInstructions && (
+              <div className="bg-muted p-4 rounded-lg">
+                <h3 className="font-semibold mb-2">Instructions</h3>
+                <div className="text-sm text-muted-foreground whitespace-pre-wrap">
+                  {instructions}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Code Editor */}
-            <div className="flex-1 flex flex-col">
-              <div className="flex items-center justify-between px-4 py-2 bg-muted border rounded-t-lg">
+            <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+              <div className="flex items-center justify-between px-4 py-2 bg-muted border rounded-t-lg shrink-0">
                 <span className="text-sm font-medium">HTML Editor</span>
                 <div className="flex gap-2">
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     size="sm"
                     onClick={handleReset}
                     className="h-7 text-xs"
@@ -104,8 +164,8 @@ export function PracticeEditor({
                     <RotateCcw className="w-3 h-3 mr-1" />
                     Reset
                   </Button>
-                  <Button 
-                    variant="default" 
+                  <Button
+                    variant="default"
                     size="sm"
                     onClick={handleRun}
                     className="h-7 text-xs"
@@ -115,11 +175,11 @@ export function PracticeEditor({
                   </Button>
                 </div>
               </div>
-              <div className="flex-1 flex border border-t-0 rounded-b-lg overflow-hidden bg-background">
+              <div className="flex-1 flex border border-t-0 rounded-b-lg overflow-hidden bg-background min-h-0">
                 {/* Line Numbers */}
-                <div 
+                <div
                   ref={lineNumbersRef}
-                  className="flex flex-col py-4 px-2 bg-muted/50 text-muted-foreground text-sm font-mono select-none overflow-hidden border-r"
+                  className="py-4 px-2 bg-muted/50 text-muted-foreground text-sm font-mono select-none overflow-hidden border-r shrink-0"
                   style={{ minWidth: '3.5rem', textAlign: 'right' }}
                 >
                   {lineNumbers.map((num) => (
@@ -134,9 +194,9 @@ export function PracticeEditor({
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
                   onScroll={handleScroll}
-                  className="flex-1 min-h-[300px] py-4 px-4 font-mono text-sm bg-transparent focus:outline-none resize-none leading-6"
+                  className="flex-1 py-4 px-4 font-mono text-sm bg-transparent focus:outline-none resize-none leading-6 overflow-y-auto"
                   spellCheck={false}
-                  style={{ 
+                  style={{
                     tabSize: 2,
                     lineHeight: '1.5rem'
                   }}
@@ -146,19 +206,19 @@ export function PracticeEditor({
           </div>
 
           {/* Right Panel - Preview */}
-          <div className="flex flex-col">
-            <div className="flex items-center justify-between px-4 py-2 bg-muted border rounded-t-lg">
+          <div className="flex flex-col min-h-0 overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-2 bg-muted border rounded-t-lg shrink-0">
               <span className="text-sm font-medium">Preview</span>
             </div>
-            <div className="flex-1 border border-t-0 rounded-b-lg bg-white dark:bg-gray-50 overflow-hidden">
+            <div className="flex-1 border border-t-0 rounded-b-lg bg-white dark:bg-gray-50 overflow-hidden min-h-0">
               {previewContent ? (
                 <iframe
                   key={previewKey}
                   title="Practice Preview"
                   sandbox="allow-scripts"
                   srcDoc={previewContent}
-                  style={{ 
-                    width: '100%', 
+                  style={{
+                    width: '100%',
                     height: '100%',
                     minHeight: height,
                     border: 'none',
