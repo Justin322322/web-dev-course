@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Code, Play, RotateCcw, Maximize2, Minimize2, Eye, EyeOff } from 'lucide-react';
+import { Code, Play, RotateCcw } from 'lucide-react';
 
 interface PracticeEditorProps {
   title: string;
@@ -22,8 +22,6 @@ export function PracticeEditor({
   const [code, setCode] = useState(initialCode);
   const [previewContent, setPreviewContent] = useState('');
   const [previewKey, setPreviewKey] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [showInstructions, setShowInstructions] = useState(true);
   const [autoRun] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const lineNumbersRef = useRef<HTMLDivElement>(null);
@@ -38,10 +36,6 @@ export function PracticeEditor({
     setPreviewContent(code);
     setPreviewKey(prev => prev + 1);
   }, [code]);
-
-  const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
-  };
 
   // Auto-run with debounce
   useEffect(() => {
@@ -90,31 +84,9 @@ export function PracticeEditor({
           Open Practice Editor
         </Button>
       </DialogTrigger>
-      <DialogContent className={`p-0 flex flex-col ${isFullscreen ? 'w-screen h-screen max-w-none' : 'w-[95vw] max-w-7xl h-[90vh]'}`}>
+      <DialogContent className="p-0 flex flex-col w-[95vw] max-w-7xl h-[90vh]">
         <div className="flex items-center justify-between px-5 py-3.5 border-b bg-background shrink-0">
-          <div className="flex items-center gap-3">
-            <h2 className="text-lg font-semibold leading-none">{title}</h2>
-            <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowInstructions(!showInstructions)}
-                className="h-7 text-xs"
-                title={showInstructions ? "Hide instructions" : "Show instructions"}
-              >
-                {showInstructions ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleFullscreen}
-                className="h-7 text-xs"
-                title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-              >
-                {isFullscreen ? <Minimize2 className="w-3 h-3" /> : <Maximize2 className="w-3 h-3" />}
-              </Button>
-            </div>
-          </div>
+          <h2 className="text-lg font-semibold leading-none">{title}</h2>
           <button
             onClick={() => setOpen(false)}
             className="rounded-full opacity-70 hover:opacity-100 transition-all p-1 hover:bg-accent -mr-1"
@@ -141,14 +113,12 @@ export function PracticeEditor({
           {/* Left Panel - Instructions & Code Editor */}
           <div className="flex flex-col gap-4 h-full min-h-0 overflow-hidden">
             {/* Instructions */}
-            {showInstructions && (
-              <div className="bg-muted p-4 rounded-lg">
-                <h3 className="font-semibold mb-2">Instructions</h3>
-                <div className="text-sm text-muted-foreground whitespace-pre-wrap">
-                  {instructions}
-                </div>
+            <div className="bg-muted p-4 rounded-lg">
+              <h3 className="font-semibold mb-2">Instructions</h3>
+              <div className="text-sm text-muted-foreground whitespace-pre-wrap">
+                {instructions}
               </div>
-            )}
+            </div>
 
             {/* Code Editor */}
             <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
